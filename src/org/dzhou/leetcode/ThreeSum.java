@@ -3,9 +3,7 @@ package org.dzhou.leetcode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * 5. 3Sum
@@ -35,7 +33,6 @@ public class ThreeSum {
 				return Collections.emptyList();
 
 			List<List<Integer>> result = new ArrayList<>();
-			Set<List<Integer>> set = new HashSet<>();
 
 			Arrays.sort(nums);
 			for (int i = 0; i < nums.length - 2; i++) {
@@ -48,8 +45,7 @@ public class ThreeSum {
 					int sum = nums[i] + nums[low] + nums[high];
 					if (sum == 0) {
 						List<Integer> item = Arrays.asList(new Integer[] { nums[i], nums[low], nums[high] });
-						if (!set.contains(item)) {
-							set.add(item);
+						if (!result.contains(item)) {
 							result.add(item);
 						}
 						low++;
@@ -60,7 +56,6 @@ public class ThreeSum {
 						low++;
 					}
 				}
-
 			}
 
 			return result;
