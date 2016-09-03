@@ -36,9 +36,8 @@ public class TwoSum {
 				return null;
 
 			Map<Integer, Integer> map = new HashMap<>();
-			for (int i = 0; i < nums.length; i++) {
+			for (int i = 0; i < nums.length; i++)
 				map.put(nums[i], i);
-			}
 
 			for (int i = 0; i < nums.length; i++) {
 				int difference = target - nums[i];
@@ -46,6 +45,7 @@ public class TwoSum {
 					return new int[] { i, map.get(difference) };
 				}
 			}
+
 			return null;
 		}
 
@@ -54,9 +54,8 @@ public class TwoSum {
 	public class Solution1 {
 
 		public int[] twoSum(int[] nums, int target) {
-			if (nums == null || nums.length < 2) {
+			if (nums == null || nums.length < 2)
 				return null;
-			}
 
 			Map<Integer, Integer> map = new HashMap<>();
 			for (int i = 0; i < nums.length; i++) {
