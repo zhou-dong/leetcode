@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 1. Two Sum
+ * 
  * Given an array of integers, return indices of the two numbers such that they
  * add up to a specific target.
  * 
@@ -44,9 +46,31 @@ public class TwoSum {
 					return new int[] { i, map.get(difference) };
 				}
 			}
+			return null;
+		}
+
+	}
+
+	public class Solution1 {
+
+		public int[] twoSum(int[] nums, int target) {
+			if (nums == null || nums.length < 2) {
+				return null;
+			}
+
+			Map<Integer, Integer> map = new HashMap<>();
+			for (int i = 0; i < nums.length; i++) {
+				int difference = target - nums[i];
+				if (map.containsKey(difference)) {
+					return new int[] { i, map.get(difference) };
+				} else {
+					map.put(nums[i], i);
+				}
+			}
 
 			return null;
 		}
+
 	}
 
 }
