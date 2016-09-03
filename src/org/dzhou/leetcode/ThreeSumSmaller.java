@@ -37,7 +37,8 @@ public class ThreeSumSmaller {
 				if (sum >= target) {
 					high--;
 				} else {
-					count += high - low;// right - left个组合都是小于目标数的
+					// right - left个组合都是小于目标数的
+					count += high - low;
 					low++;
 				}
 			}
