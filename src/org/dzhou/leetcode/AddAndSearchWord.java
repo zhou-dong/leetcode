@@ -67,10 +67,13 @@ public class AddAndSearchWord {
 		public void addWord(String word) {
 			if (word == null || word.length() == 0)
 				return;
-			TrieNode current = root;
+			addWord(word, root);
+		}
+
+		private void addWord(String word, TrieNode node) {
 			for (char c : word.toCharArray())
-				current = current.addChild(c);
-			current.isWord = true;
+				node = node.addChild(c);
+			node.isWord = true;
 		}
 
 		// Returns if the word is in the data structure. A word could
@@ -88,17 +91,16 @@ public class AddAndSearchWord {
 					return curr.getChild(c).isWord;
 				return search(word, index + 1, curr.getChild(c));
 			} else if (c == '.') {
-				boolean result = false;
 				for (Map.Entry<Character, TrieNode> child : curr.children.entrySet()) {
 					if (index == word.length() - 1 && child.getValue().isWord) {
 						return true;
 					}
 					// if any path is true, set result to be true;
 					if (search(word, index + 1, child.getValue())) {
-						result = true;
+						return true;
 					}
 				}
-				return result;
+				return false;
 			} else {
 				return false;
 			}
@@ -109,4 +111,5 @@ public class AddAndSearchWord {
 	// WordDictionary wordDictionary = new WordDictionary();
 	// wordDictionary.addWord("word");
 	// wordDictionary.search("pattern");
+
 }

@@ -51,10 +51,15 @@ public class ImplementTriePrefixTree {
 
 		// Inserts a word into the trie.
 		public void insert(String word) {
-			TrieNode current = root;
+			if (word == null || word.length() == 0)
+				return;
+			insert(word, root);
+		}
+
+		private void insert(String word, TrieNode node) {
 			for (char c : word.toCharArray())
-				current = current.addChild(c);
-			current.isWord = true;
+				node = node.addChild(c);
+			node.isWord = true;
 		}
 
 		// Returns if the word is in the trie.
@@ -72,7 +77,10 @@ public class ImplementTriePrefixTree {
 		public TrieNode searchNode(String str) {
 			if (str == null || str.length() == 0)
 				return null;
-			TrieNode current = root;
+			return searchNode(str, root);
+		}
+
+		private TrieNode searchNode(String str, TrieNode current) {
 			for (char c : str.toCharArray()) {
 				if (!current.contains(c))
 					return null;
