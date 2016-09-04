@@ -21,7 +21,7 @@ package org.dzhou.leetcode;
  * @author zhoudong
  *
  */
-public class RangeSumQuery {
+public class RangeSumQueryImmutable {
 
 	public class NumArray {
 
