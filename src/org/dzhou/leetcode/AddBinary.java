@@ -1,8 +1,9 @@
 package org.dzhou.leetcode;
 
 /**
- * 67. Add Binary QuestionEditorial Solution My Submissions Given two binary
- * strings, return their sum (also a binary string).
+ * 67. Add Binary
+ * 
+ * Given two binary strings, return their sum (also a binary string).
  * 
  * For example, <br>
  * a = "11" <br>

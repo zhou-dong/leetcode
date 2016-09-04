@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 211. Add and Search Word - Data structure design QuestionEditorial Solution
- * My Submissions
+ * 211. Add and Search Word - Data structure design
  * 
  * Design a data structure that supports the following two operations:
  * 

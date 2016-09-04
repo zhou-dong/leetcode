@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 208. Implement Trie (Prefix Tree) QuestionEditorial Solution My Submissions
+ * 208. Implement Trie (Prefix Tree)
  * 
  * Implement a trie with insert, search, and startsWith methods.
  * 
@@ -74,7 +74,7 @@ public class ImplementTriePrefixTree {
 			return searchNode(prefix) != null;
 		}
 
-		public TrieNode searchNode(String str) {
+		private TrieNode searchNode(String str) {
 			if (str == null || str.length() == 0)
 				return null;
 			return searchNode(str, root);
