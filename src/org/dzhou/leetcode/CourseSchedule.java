@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * 207. Course Schedule
@@ -46,8 +47,56 @@ import java.util.Set;
  */
 public class CourseSchedule {
 
-	// DFS detect cycle
-	public class Solution {
+	public class Topological_Sort_Solution {
+		Set<Integer> visiting = new HashSet<>();
+		Set<Integer> visited = new HashSet<>();
+		Stack<Integer> stack = new Stack<>();
+
+		public boolean canFinish(int numCourses, int[][] prerequisites) {
+			Map<Integer, Set<Integer>> graph = createGraph(prerequisites);
+			for (int vertex : graph.keySet()) {
+				if (hasCycle(graph, vertex)) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		private Map<Integer, Set<Integer>> createGraph(int[][] edges) {
+			Map<Integer, Set<Integer>> graph = new HashMap<>();
+			for (int[] edge : edges) {
+				if (!graph.containsKey(edge[1]))
+					graph.put(edge[1], new HashSet<>());
+				graph.get(edge[1]).add(edge[0]);
+			}
+			return graph;
+		}
+
+		private boolean hasCycle(Map<Integer, Set<Integer>> graph, int vertex) {
+			if (!graph.containsKey(vertex)) {
+				stack.push(vertex);
+				return false;
+			}
+			if (visited.contains(vertex)) {
+				return false;
+			}
+			if (visiting.contains(vertex)) {
+				return true;
+			}
+			visiting.add(vertex);
+			for (int connect : graph.get(vertex)) {
+				if (hasCycle(graph, connect)) {
+					return true;
+				}
+			}
+			visiting.remove(vertex);
+			visited.add(vertex);
+			stack.push(vertex);
+			return false;
+		}
+	}
+
+	public class DFS_Solution {
 		Set<Integer> visiting = new HashSet<>();
 		Set<Integer> visited = new HashSet<>();
 
@@ -91,10 +140,7 @@ public class CourseSchedule {
 			}
 			return graph;
 		}
-
 	}
-
-	// Topological Sort
 
 	// Remove Tail
 }
