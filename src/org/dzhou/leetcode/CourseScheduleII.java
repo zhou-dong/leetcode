@@ -57,53 +57,6 @@ import java.util.Stack;
  */
 public class CourseScheduleII {
 
-	public class BFS_Solution {
-
-		public int[] findOrder(int numCourses, int[][] prerequisites) {
-
-			Map<Integer, List<Integer>> graph = createGraph(prerequisites);
-
-			int[] counter = new int[numCourses];
-			for (int[] edge : prerequisites) {
-				counter[edge[0]]++;
-			}
-
-			Queue<Integer> queue = new LinkedList<>();
-			for (int i = 0; i < numCourses; i++) {
-				if (counter[i] == 0) {
-					queue.add(i); // course without preCourse
-				}
-			}
-
-			int index = 0;
-			int[] result = new int[numCourses];
-			while (!queue.isEmpty()) {
-				int course = queue.poll();
-				result[index++] = course;
-				if (graph.containsKey(course)) {
-					for (int other : graph.get(course)) {
-						if (--counter[other] == 0) {
-							queue.add(other);
-						}
-					}
-				}
-			}
-
-			return index == numCourses ? result : new int[0];
-		}
-
-		private Map<Integer, List<Integer>> createGraph(int[][] edges) {
-			Map<Integer, List<Integer>> graph = new HashMap<>();
-			for (int[] edge : edges) {
-				if (!graph.containsKey(edge[1]))
-					graph.put(edge[1], new ArrayList<>());
-				graph.get(edge[1]).add(edge[0]);
-			}
-			return graph;
-		}
-
-	}
-
 	public class Topological_Sort_Solution {
 
 		Set<Integer> visiting = null;
@@ -167,6 +120,53 @@ public class CourseScheduleII {
 			for (int[] edge : edges) {
 				if (!graph.containsKey(edge[1]))
 					graph.put(edge[1], new HashSet<>());
+				graph.get(edge[1]).add(edge[0]);
+			}
+			return graph;
+		}
+
+	}
+
+	public class BFS_Solution {
+
+		public int[] findOrder(int numCourses, int[][] prerequisites) {
+
+			Map<Integer, List<Integer>> graph = createGraph(prerequisites);
+
+			int[] counter = new int[numCourses];
+			for (int[] edge : prerequisites) {
+				counter[edge[0]]++;
+			}
+
+			Queue<Integer> queue = new LinkedList<>();
+			for (int i = 0; i < numCourses; i++) {
+				if (counter[i] == 0) {
+					queue.add(i); // course without preCourse
+				}
+			}
+
+			int index = 0;
+			int[] result = new int[numCourses];
+			while (!queue.isEmpty()) {
+				int course = queue.poll();
+				result[index++] = course;
+				if (graph.containsKey(course)) {
+					for (int other : graph.get(course)) {
+						if (--counter[other] == 0) {
+							queue.add(other);
+						}
+					}
+				}
+			}
+
+			return index == numCourses ? result : new int[0];
+		}
+
+		private Map<Integer, List<Integer>> createGraph(int[][] edges) {
+			Map<Integer, List<Integer>> graph = new HashMap<>();
+			for (int[] edge : edges) {
+				if (!graph.containsKey(edge[1]))
+					graph.put(edge[1], new ArrayList<>());
 				graph.get(edge[1]).add(edge[0]);
 			}
 			return graph;
