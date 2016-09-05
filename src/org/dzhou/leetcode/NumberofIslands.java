@@ -1,9 +1,7 @@
 package org.dzhou.leetcode;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
 
 /**
  * 200. Number of Islands
@@ -35,48 +33,6 @@ import java.util.Set;
  *
  */
 public class NumberofIslands {
-
-	// Union Find
-	public class Solution {
-
-		int[][] roots = null;
-
-		public int numIslands(char[][] grid) {
-
-			return count();
-		}
-
-		private int[][] rootsMatrix(char[][] grid) {
-			roots = new int[grid.length][grid[0].length];
-
-			return roots;
-		}
-
-		private int count() {
-			Set<Integer> set = new HashSet<>();
-			for (int[] row : roots) {
-				for (int root : row) {
-					if (root != 0) {
-						set.add(root);
-					}
-				}
-			}
-			return set.size();
-		}
-
-		private boolean isUnvisitedIsland(char[][] grid, boolean[][] visited, int row, int col) {
-			return isValid(grid, row, col) && isIsland(grid, row, col) && !visited[row][col];
-		}
-
-		private boolean isIsland(char[][] grid, int row, int col) {
-			return grid[row][col] != '0';
-		}
-
-		private boolean isValid(char[][] grid, int row, int col) {
-			return row >= 0 && col >= 0 && row < grid.length && col < grid[0].length;
-		}
-
-	}
 
 	// DFS
 	public class Solution1 {
