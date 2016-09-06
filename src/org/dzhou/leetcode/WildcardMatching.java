@@ -1,5 +1,30 @@
 package org.dzhou.leetcode;
 
+/**
+ * 44. Wildcard Matching
+ * 
+ * Implement wildcard pattern matching with support for '?' and '*'.
+ * 
+ * '?' Matches any single character. <br>
+ * '*' Matches any sequence of characters (including the empty sequence).
+ * 
+ * The matching should cover the entire input string (not partial).
+ * 
+ * The function prototype should be: <br>
+ * bool isMatch(const char *s, const char *p)
+ * 
+ * Some examples: <br>
+ * isMatch("aa","a") → false <br>
+ * isMatch("aa","aa") → true <br>
+ * isMatch("aaa","aa") → false <br>
+ * isMatch("aa", "*") → true <br>
+ * isMatch("aa", "a*") → true <br>
+ * isMatch("ab", "?*") → true <br>
+ * isMatch("aab", "c*a*b") → false <br>
+ * 
+ * @author zhoudong
+ *
+ */
 public class WildcardMatching {
 
 	public boolean isMatch(String s, String p) {
