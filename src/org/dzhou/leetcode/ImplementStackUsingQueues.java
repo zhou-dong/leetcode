@@ -9,7 +9,7 @@ import java.util.Queue;
  * @author zhoudong
  *
  */
-public interface ImplementStackUsingQueues {
+public class ImplementStackUsingQueues {
 
 	class MyStack_TwoQueue {
 
