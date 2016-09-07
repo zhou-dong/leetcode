@@ -1,7 +1,6 @@
 package org.dzhou.leetcode;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -32,9 +31,34 @@ public class BinaryTreeInorderTraversal {
 		public List<Integer> inorderTraversal(TreeNode root) {
 			List<Integer> result = new ArrayList<>();
 			Stack<TreeNode> stack = new Stack<>();
+			while (root != null || !stack.isEmpty()) {
+				if (root != null) {
+					stack.push(root);
+					root = root.left;
+				} else {
+					root = stack.pop();
+					result.add(root.val);
+					root = root.right;
+				}
+			}
+			return result;
+		}
+	}
+
+	public class Iterative_Recursive_Solution {
+		public List<Integer> inorderTraversal(TreeNode root) {
+			List<Integer> result = new ArrayList<>();
+			Stack<TreeNode> stack = new Stack<>();
 			addLeftToStack(root, stack);
 			addToResult(stack, result);
 			return result;
+		}
+
+		private void addLeftToStack(TreeNode root, Stack<TreeNode> stack) {
+			while (root != null) {
+				stack.add(root);
+				root = root.left;
+			}
 		}
 
 		private void addToResult(Stack<TreeNode> stack, List<Integer> result) {
@@ -44,13 +68,6 @@ public class BinaryTreeInorderTraversal {
 			result.add(node.val);
 			addLeftToStack(node.right, stack);
 			addToResult(stack, result);
-		}
-
-		private void addLeftToStack(TreeNode root, Stack<TreeNode> stack) {
-			while (root != null) {
-				stack.add(root);
-				root = root.left;
-			}
 		}
 	}
 
