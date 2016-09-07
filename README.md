@@ -132,3 +132,41 @@ if (word1.charAt(row - 1) == word2.charAt(col - 1)) {
 	dp(row)(col) = Math.min(replace, Math.min(insert, delete));
 }
 ```
+
+
+Reverse List
+
+Recursive
+
+```java
+public ListNode reverseList(ListNode head) {
+	return head == null ? null : recursive(head);
+}
+
+private ListNode recursive(ListNode head) {
+	if (head.next == null)
+		return head;
+	ListNode newHead = recursive(head.next);
+	head.next.next = head;
+	head.next = null;
+	return newHead;
+}
+```
+
+Iterator
+
+```java
+public ListNode reverseList(ListNode head) {
+	if (head == null)
+		return null;
+	ListNode dummy = new ListNode(-1);
+	dummy.next = head;
+	while (head.next != null) {
+		ListNode temp = dummy.next;
+		dummy.next = head.next;
+		head.next = head.next.next;
+		dummy.next.next = temp;
+	}
+	return dummy.next;
+}
+```
