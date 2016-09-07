@@ -36,7 +36,7 @@ public void inorderTraversal(TreeNode root) {
 		}
 	}
 }
-``
+```
 
 BFS
 
