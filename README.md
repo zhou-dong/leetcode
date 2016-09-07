@@ -8,6 +8,10 @@
 
 ## Tree
 
+### Same Tree
+
+不能用inOrderTraversal检查两个Tree的结构，因为不同的Tree结构，可能会有相同的inOrderTraversal顺序。
+
 ### Recursive
 
 ```java
