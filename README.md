@@ -45,7 +45,7 @@ BFS
 
 ### Lowest Common Ancestor of a Binary Search Tree
 
-```
+```java
 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 	if (root.val < p.val && root.val < q.val)
 		return lowestCommonAncestor(root.right, p, q);
@@ -122,7 +122,7 @@ class TrieNode {
 
 ### Edit Distance
 
-```
+```java
 if (word1.charAt(row - 1) == word2.charAt(col - 1)) {
 	dp(row)(col) = dp(row - 1)(col - 1);
 } else {
