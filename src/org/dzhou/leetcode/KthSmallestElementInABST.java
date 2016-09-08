@@ -1,5 +1,7 @@
 package org.dzhou.leetcode;
 
+import java.util.Stack;
+
 /**
  * 230. Kth Smallest Element in a BST
  * 
@@ -36,7 +38,7 @@ public class KthSmallestElementInABST {
 		}
 	}
 
-	public class Solution {
+	public class DFS_Solution {
 		int count = 0;
 		int value = 0;
 
@@ -56,6 +58,29 @@ public class KthSmallestElementInABST {
 				return;
 			}
 			inOrder(root.right);
+		}
+	}
+
+	public class BFS_Solution {
+		public int kthSmallest(TreeNode root, int k) {
+			if (root == null)
+				return -1;
+			Stack<TreeNode> stack = new Stack<>();
+			while (root != null) {
+				stack.push(root);
+				root = root.left;
+			}
+			while (k != 0 && !stack.isEmpty()) {
+				TreeNode node = stack.pop();
+				if (--k == 0)
+					return node.val;
+				TreeNode right = node.right;
+				while (right != null) {
+					stack.push(right);
+					right = right.left;
+				}
+			}
+			return -1;
 		}
 	}
 
