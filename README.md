@@ -12,6 +12,8 @@
 
 不能用inOrderTraversal检查两个Tree的结构，因为不同的Tree结构，可能会有相同的inOrderTraversal顺序。
 
+Tree 的 leaf node have: (left.left==null && leaf.right==null)
+
 ### Recursive
 
 ```java
