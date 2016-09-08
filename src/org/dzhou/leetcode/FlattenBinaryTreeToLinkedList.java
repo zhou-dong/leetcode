@@ -26,7 +26,6 @@ public class FlattenBinaryTreeToLinkedList {
 		TreeNode prev = null;
 
 		public void flatten(TreeNode root) {
-
 			if (root == null)
 				return;
 
