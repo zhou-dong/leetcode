@@ -1,7 +1,5 @@
 package org.dzhou.leetcode;
 
-import org.omg.CORBA.Current;
-
 /**
  * 129. Sum Root to Leaf Numbers
  * 
