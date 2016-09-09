@@ -38,10 +38,32 @@ public class ValidateBinarySearchTree {
 	}
 
 	public class Inorder_Solution {
+		TreeNode previous = null;
+		boolean isValid = true;
 
-		TreeNode previous = null ,
-		
-		
+		public boolean isValidBST(TreeNode root) {
+			init();
+			inOrder(root);
+			return isValid;
+
+		}
+
+		private void inOrder(TreeNode root) {
+			if (root == null)
+				return;
+			inOrder(root.left);
+			if (previous != null && root.val <= previous.val) {
+				isValid = false;
+				return;
+			}
+			previous = root;
+			inOrder(root.right);
+		}
+
+		private void init() {
+			previous = null;
+			isValid = true;
+		}
 	}
 
 }
