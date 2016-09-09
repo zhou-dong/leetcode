@@ -32,6 +32,38 @@ public class PathSumII {
 			if (root == null)
 				return Collections.emptyList();
 			List<List<Integer>> result = new ArrayList<>();
+			List<Integer> item = new ArrayList<>();
+			item.add(root.val);
+			dfs(root, sum - root.val, result, item);
+			return result;
+		}
+
+		private void dfs(TreeNode root, int sum, List<List<Integer>> result, List<Integer> item) {
+			if (root.left == null && root.right == null) {
+				if (sum == 0) {
+					result.add(new ArrayList<>(item));
+				}
+			}
+			if (root.left != null) {
+				item.add(root.left.val);
+				dfs(root.left, sum - root.left.val, result, item);
+				item.remove(item.size() - 1);
+			}
+			if (root.right != null) {
+				item.add(root.right.val);
+				dfs(root.right, sum - root.right.val, result, item);
+				item.remove(item.size() - 1);
+			}
+		}
+
+	}
+
+	public class Solution1 {
+
+		public List<List<Integer>> pathSum(TreeNode root, int sum) {
+			if (root == null)
+				return Collections.emptyList();
+			List<List<Integer>> result = new ArrayList<>();
 			dfs(root, sum, result, new ArrayList<>());
 			return result;
 		}
@@ -55,5 +87,4 @@ public class PathSumII {
 		}
 
 	}
-
 }
