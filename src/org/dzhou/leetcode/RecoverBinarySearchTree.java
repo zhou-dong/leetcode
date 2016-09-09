@@ -33,11 +33,15 @@ public class RecoverBinarySearchTree {
 		TreeNode first = null, second = null, previous = null;
 
 		public void recoverTree(TreeNode root) {
+			init();
+			inOrderTraversal(root);
+			swap();
+		}
+
+		private void init() {
 			first = null;
 			second = null;
 			previous = null;
-			inOrderTraversal(root);
-			swap();
 		}
 
 		// example: 1,4,3,2,5,6

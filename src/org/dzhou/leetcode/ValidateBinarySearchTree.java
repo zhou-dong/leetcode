@@ -37,4 +37,11 @@ public class ValidateBinarySearchTree {
 
 	}
 
+	public class Inorder_Solution {
+
+		TreeNode previous = null ,
+		
+		
+	}
+
 }
