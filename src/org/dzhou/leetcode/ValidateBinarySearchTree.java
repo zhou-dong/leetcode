@@ -66,4 +66,33 @@ public class ValidateBinarySearchTree {
 		}
 	}
 
+	public class Inorder_Solution2 {
+		double previous = 0d;
+		boolean isValid = true;
+
+		public boolean isValidBST(TreeNode root) {
+			init();
+			inOrder(root);
+			return isValid;
+
+		}
+
+		private void inOrder(TreeNode root) {
+			if (root == null)
+				return;
+			inOrder(root.left);
+			if (root.val <= previous) {
+				isValid = false;
+				return;
+			}
+			previous = root.val;
+			inOrder(root.right);
+		}
+
+		private void init() {
+			previous = Double.NEGATIVE_INFINITY;
+			isValid = true;
+		}
+	}
+
 }
