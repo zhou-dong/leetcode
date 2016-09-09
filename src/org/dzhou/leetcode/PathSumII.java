@@ -27,7 +27,7 @@ public class PathSumII {
 	}
 
 	public class Solution {
-		
+
 		public List<List<Integer>> pathSum(TreeNode root, int sum) {
 			if (root == null)
 				return Collections.emptyList();
@@ -53,7 +53,7 @@ public class PathSumII {
 				item.remove(item.size() - 1);
 			}
 		}
-		
+
 	}
 
 }
