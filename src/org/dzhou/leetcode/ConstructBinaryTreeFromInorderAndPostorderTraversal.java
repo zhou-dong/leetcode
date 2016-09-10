@@ -3,8 +3,6 @@ package org.dzhou.leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.dzhou.leetcode.ConstructBinaryTreeFromPreorderAndInorderTraversal.TreeNode;
-
 /**
  * 106. Construct Binary Tree from Inorder and Postorder Traversal
  * 
