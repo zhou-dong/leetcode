@@ -1,5 +1,8 @@
 package org.dzhou.leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 105. Construct Binary Tree from Preorder and Inorder Traversal
  * 
@@ -31,10 +34,71 @@ public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
 	public class Solution {
 
 		public TreeNode buildTree(int[] preorder, int[] inorder) {
-
-			return null;
+			if (preorder == null || inorder == null || preorder.length != inorder.length)
+				return null;
+			return helper(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1,
+					createInOrderIndex(inorder));
 		}
 
+		// 索引value在inOrder数组中的index，方便快速查抄。
+		private Map<Integer, Integer> createInOrderIndex(int[] inorder) {
+			Map<Integer, Integer> inOrderIndex = new HashMap<>();
+			for (int i = 0; i < inorder.length; i++)
+				inOrderIndex.put(inorder[i], i);
+			return inOrderIndex;
+		}
+
+		private TreeNode helper(int[] preorder, int[] inorder, int preLeft, int preRight, int inLeft, int inRight,
+				Map<Integer, Integer> inOrderIndex) {
+			if (preLeft > preRight || inLeft > inRight)
+				return null;
+			TreeNode root = new TreeNode(preorder[preLeft]);
+			// 元素在inOrder中的位置
+			int index = inOrderIndex.get(root.val);
+			root.left = helper(preorder, inorder, preLeft + 1, index - inLeft + preLeft, inLeft, index - 1,
+					inOrderIndex);
+			root.right = helper(preorder, inorder, preLeft + index - inLeft + 1, preRight, index + 1, inRight,
+					inOrderIndex);
+			return root;
+		}
 	}
 
+	public class Solution1 {
+		public TreeNode buildTree(int[] preorder, int[] inorder) {
+			if (preorder == null || inorder == null || preorder.length != inorder.length)
+				return null;
+			init(preorder, inorder);
+			return helper(0, preorder.length - 1, 0, inorder.length - 1);
+		}
+
+		int[] preorder = null, inorder = null;
+		Map<Integer, Integer> inOrderIndex = null;
+
+		private void init(int[] preorder, int[] inorder) {
+			this.preorder = preorder;
+			this.inorder = inorder;
+			this.inOrderIndex = createInOrderIndex(inorder);
+		}
+
+		// 索引value在inOrder数组中的index，方便快速查抄。
+		private Map<Integer, Integer> createInOrderIndex(int[] inorder) {
+			Map<Integer, Integer> inOrderIndex = new HashMap<>();
+			for (int i = 0; i < inorder.length; i++)
+				inOrderIndex.put(inorder[i], i);
+			return inOrderIndex;
+		}
+
+		// example:
+		// preOrder: A B D E F C G H J L K
+		// inOrder : D B F E A G C L J H K
+		private TreeNode helper(int preLeft, int preRight, int inLeft, int inRight) {
+			if (preLeft > preRight || inLeft > inRight)
+				return null;
+			TreeNode root = new TreeNode(preorder[preLeft]);
+			int index = inOrderIndex.get(root.val);// 元素在inOrder中的位置
+			root.left = helper(preLeft + 1, preLeft + index - inLeft, inLeft, index - 1);
+			root.right = helper(preLeft + index - inLeft + 1, preRight, index + 1, inRight);
+			return root;
+		}
+	}
 }
