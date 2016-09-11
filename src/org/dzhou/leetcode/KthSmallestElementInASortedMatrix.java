@@ -20,6 +20,7 @@ import java.util.Set;
 public class KthSmallestElementInASortedMatrix {
 
 	public class BFS_Heap_Solution {
+
 		class Point implements Comparable<Point> {
 			int value;
 			int row;
@@ -37,10 +38,10 @@ public class KthSmallestElementInASortedMatrix {
 			}
 		}
 
+		private int[][] rightDown = { { 0, 1 }, { 1, 0 } };
 		Set<String> visited = null;
 		PriorityQueue<Point> heap = null;
 		int[][] matrix = null;
-		private int[][] rightDown = { { 0, 1 }, { 1, 0 } };
 
 		public int kthSmallest(int[][] matrix, int k) {
 			init(matrix);
