@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * 20. Valid Parentheses
@@ -36,7 +37,7 @@ public class ValidParentheses {
 			return true;
 		}
 	}
-	
+
 	public static class Solution1 {
 
 		static Set<Character> set = new HashSet<>();
@@ -46,12 +47,24 @@ public class ValidParentheses {
 			set.add('(');
 			set.add('{');
 			set.add('[');
-			map.put('(', ')');
+			map.put(')', '(');
+			map.put('}', '{');
+			map.put(']', '[');
 		}
 
 		public boolean isValid(String s) {
-
-			return true;
+			Stack<Character> stack = new Stack<>();
+			for (char c : s.toCharArray()) {
+				if (set.contains(c)) {
+					stack.add(c);
+				} else {
+					if (stack.isEmpty())
+						return false;
+					if (stack.pop() != map.get(c))
+						return false;
+				}
+			}
+			return stack.isEmpty();
 		}
 	}
 }
