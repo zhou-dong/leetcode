@@ -55,6 +55,6 @@ public class DifferentWaysToAddParentheses {
 		case '*':
 			return x * y;
 		}
-		return 0;
+		throw new RuntimeException("illegal operator: " + operator);
 	}
 }
