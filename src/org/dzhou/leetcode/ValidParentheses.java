@@ -20,52 +20,33 @@ import java.util.Stack;
  */
 public class ValidParentheses {
 
-	public static class Solution {
+	static Set<Character> set = new HashSet<>();
+	static Map<Character, Character> map = new HashMap<>();
 
-		static Set<Character> set = new HashSet<>();
-		static Map<Character, Character> map = new HashMap<>();
-
-		static {
-			set.add('(');
-			set.add('{');
-			set.add('[');
-			map.put(')', '(');
-			map.put('}', '{');
-			map.put(']', '[');
-		}
-
-		public boolean isValid(String s) {
-			Stack<Character> stack = new Stack<>();
-			for (char c : s.toCharArray()) {
-				if (set.contains(c)) {
-					stack.add(c);
-				} else {
-					if (stack.isEmpty())
-						return false;
-					if (stack.pop() != map.get(c))
-						return false;
-				}
-			}
-			return stack.isEmpty();
-		}
+	static {
+		set.add('(');
+		set.add('[');
+		set.add('{');
+		map.put(')', '(');
+		map.put(']', '[');
+		map.put('}', '{');
 	}
 
-	public static class Solution1 {
+	public boolean isValid(String s) {
+		Stack<Character> stack = new Stack<>();
 
-		static Set<Character> set = new HashSet<>();
-		static Map<Character, Character> map = new HashMap<>();
-
-		static {
-			set.add('(');
-			set.add('{');
-			set.add('[');
-			map.put('(', ')');
+		for (char c : s.toCharArray()) {
+			if (set.contains(c)) {
+				stack.add(c);
+			} else {
+				if (stack.isEmpty())
+					return false;
+				if (stack.pop() != map.get(c))
+					return false;
+			}
 		}
 
-		public boolean isValid(String s) {
-
-			return true;
-		}
+		return stack.size() == 0;
 	}
 
 }
