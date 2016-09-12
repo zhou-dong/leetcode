@@ -26,11 +26,11 @@ public class DifferentWaysToAddParentheses {
 			if (!isOperator(c))
 				continue;
 
-			List<Integer> partial1 = diffWaysToCompute(input.substring(0, i));
-			List<Integer> partial2 = diffWaysToCompute(input.substring(i + 1, input.length()));
+			List<Integer> left = diffWaysToCompute(input.substring(0, i));
+			List<Integer> right = diffWaysToCompute(input.substring(i + 1, input.length()));
 
-			for (int x : partial1) {
-				for (int y : partial2) {
+			for (int x : left) {
+				for (int y : right) {
 					result.add(calculate(x, y, c));
 				}
 			}
