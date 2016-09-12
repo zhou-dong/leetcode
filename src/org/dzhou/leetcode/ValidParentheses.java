@@ -29,24 +29,6 @@ public class ValidParentheses {
 			set.add('(');
 			set.add('{');
 			set.add('[');
-			map.put('(', ')');
-		}
-
-		public boolean isValid(String s) {
-
-			return true;
-		}
-	}
-
-	public static class Solution1 {
-
-		static Set<Character> set = new HashSet<>();
-		static Map<Character, Character> map = new HashMap<>();
-
-		static {
-			set.add('(');
-			set.add('{');
-			set.add('[');
 			map.put(')', '(');
 			map.put('}', '{');
 			map.put(']', '[');
@@ -67,4 +49,23 @@ public class ValidParentheses {
 			return stack.isEmpty();
 		}
 	}
+
+	public static class Solution1 {
+
+		static Set<Character> set = new HashSet<>();
+		static Map<Character, Character> map = new HashMap<>();
+
+		static {
+			set.add('(');
+			set.add('{');
+			set.add('[');
+			map.put('(', ')');
+		}
+
+		public boolean isValid(String s) {
+
+			return true;
+		}
+	}
+
 }
