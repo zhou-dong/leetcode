@@ -1,7 +1,5 @@
 package org.dzhou.leetcode;
 
-import java.util.Random;
-
 /**
  * 198. House Robber
  * 
