@@ -19,6 +19,8 @@ import java.util.Arrays;
  * @author zhoudong
  * 
  *         https://www.youtube.com/watch?v=NJuKJ8sasGk
+ * 
+ *         用每个coin"松弛"结果.
  *
  */
 public class CoinChange {
