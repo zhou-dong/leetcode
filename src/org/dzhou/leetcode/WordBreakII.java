@@ -1,6 +1,7 @@
 package org.dzhou.leetcode;
 
-import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -23,23 +24,49 @@ import java.util.Set;
  */
 public class WordBreakII {
 
-	static private int getDuration(String duration) {
-		String[] times = duration.split(":");
-		int result = 0;
-		for (int i = 0; i < 3; i++) {
-			result *= 60;
-			result += Integer.parseInt(times[i]);
-		}
+	public List<String> wordBreak(String s, Set<String> wordDict) {
+		if (s == null || s.length() == 0 || wordDict == null || wordDict.size() == 0)
+			return Collections.emptyList();
+		if (!hasSolution(s, wordDict))
+			return Collections.emptyList();
+		List<String> result = new ArrayList<>();
+		dfs(s, wordDict, result, new StringBuilder(), 0);
 		return result;
 	}
 
-	public static void main(String[] args) throws ParseException {
-		System.out.println(getDuration("00:01:07"));
-		System.out.println(getDuration("00:05:00"));
-		System.out.println(getDuration("01:05:00"));
+	private void dfs(String s, Set<String> wordDict, List<String> result, StringBuilder item, int start) {
+		if (start == s.length()) {
+			result.add(new String(item));
+			return;
+		}
+		StringBuilder sb = new StringBuilder();
+		for (int i = start; i < s.length(); i++) {
+			sb.append(s.charAt(i));
+			if (!wordDict.contains(sb.toString()))
+				continue;
+			int itemLength = item.length();
+			if (itemLength > 0)
+				item.append(" ");
+			dfs(s, wordDict, result, item.append(sb), i + 1);
+			item.delete(itemLength, item.length());
+		}
 	}
 
-	public List<String> wordBreak(String s, Set<String> wordDict) {
-		return null;
+	private boolean hasSolution(String s, Set<String> wordDict) {
+		boolean[] dp = new boolean[s.length()];
+		for (int i = 0; i < dp.length; i++) {
+			if (wordDict.contains(s.substring(0, i + 1))) {
+				dp[i] = true;
+				continue;
+			}
+			for (int j = 0; j <= i; j++) {
+				if (dp[j] && wordDict.contains(s.substring(j + 1, i + 1))) {
+					dp[i] = true;
+					break;
+				}
+			}
+		}
+		return dp[dp.length - 1];
 	}
+
 }
