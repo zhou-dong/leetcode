@@ -1,9 +1,8 @@
 package org.dzhou.leetcode;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 140. Word Break II
@@ -38,5 +37,9 @@ public class WordBreakII {
 		System.out.println(getDuration("00:01:07"));
 		System.out.println(getDuration("00:05:00"));
 		System.out.println(getDuration("01:05:00"));
+	}
+
+	public List<String> wordBreak(String s, Set<String> wordDict) {
+		return null;
 	}
 }
