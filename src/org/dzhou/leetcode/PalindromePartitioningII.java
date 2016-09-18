@@ -15,6 +15,7 @@ package org.dzhou.leetcode;
  * 
  * @author zhoudong
  *
+ *         https://www.youtube.com/watch?v=lDYIvtBVmgo
  *
  */
 public class PalindromePartitioningII {
