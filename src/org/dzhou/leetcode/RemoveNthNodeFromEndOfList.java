@@ -1,7 +1,5 @@
 package org.dzhou.leetcode;
 
-import java.util.Stack;
-
 /**
  * 19. Remove Nth Node From End of List
  * 
@@ -34,26 +32,30 @@ public class RemoveNthNodeFromEndOfList {
 		}
 	}
 
-	public class Solution {
+	public class Fast_Slow_Solution {
 
 		public ListNode removeNthFromEnd(ListNode head, int n) {
-			if (head == null)
+			if (head == null || head.next == null)
 				return null;
 
-			Stack<ListNode> stack = new Stack<>();
-			while (head != null) {
-				stack.push(head);
+			ListNode fast = head;
+			ListNode slow = head;
+
+			for (int i = 0; i < n; i++) {
+				fast = fast.next;
+			}
+
+			if (fast == null) {
 				head = head.next;
+				return head;
+			}
+			while (fast.next != null) {
+				fast = fast.next;
+				slow = slow.next;
 			}
 
-			if (stack.size() < n) {
-				return null;
-			}
-
-			for (int i = 0; i < n - 1; i++) {
-				stack.pop();
-			}
-			return stack.pop();
+			slow.next = slow.next.next;
+			return head;
 		}
 
 	}
