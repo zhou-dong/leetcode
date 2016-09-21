@@ -14,6 +14,45 @@ public class LongestPalindromicSubstring {
 
 	public class Dynamic_Programming_Solution {
 
+		public String longestPalindrome(String s) {
+			if (s == null || s.length() < 2)
+				return s;
+
+			String longest = s.charAt(0) + "";
+
+			boolean[][] dp = new boolean[s.length()][s.length()];
+
+			// set each character to be palindrome
+			for (int i = 0; i < dp.length; i++) {
+				dp[i][i] = true;
+			}
+
+			// check two characters word is palindrome or not
+			for (int i = 0; i < dp.length - 1; i++) {
+				if (s.charAt(i) == s.charAt(i + 1)) {
+					dp[i][i + 1] = true;
+					if (longest.length() < 2) {
+						longest = s.substring(i, i + 2);
+					}
+				}
+			}
+
+			// more than two characters word
+			for (int len = 2; len < dp.length; len++) {
+				for (int low = 0; low < dp.length; low++) {
+					if (s.charAt(low) == s.charAt(low + len)) {
+						if (dp[low + 1][low + len - 1]) {
+							dp[low][low + len] = true;
+							if (longest.length() < len) {
+								longest = s.substring(low, low + len + 1);
+							}
+						}
+					}
+				}
+			}
+			return longest;
+		}
+
 	}
 
 	// 中心扩散法
