@@ -12,8 +12,12 @@ package org.dzhou.leetcode;
  */
 public class LongestPalindromicSubstring {
 
-	// 中心扩散法 Spread From Center
-	public class Solution {
+	public class Dynamic_Programming_Solution {
+
+	}
+
+	// 中心扩散法
+	public class Spread_From_Center_Solution {
 		String longest = "";
 
 		public String longestPalindrome(String s) {
@@ -34,9 +38,8 @@ public class LongestPalindromicSubstring {
 		}
 	}
 
-	// brute force
 	// Time Limit Exceeded
-	public class Solution1 {
+	public class Brute_Force_Solution1 {
 
 		public String longestPalindrome(String s) {
 			if (s == null || s.length() == 0)
