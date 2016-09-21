@@ -13,7 +13,6 @@ package org.dzhou.leetcode;
 public class LongestPalindromicSubstring {
 
 	public class Dynamic_Programming_Solution {
-
 		public String longestPalindrome(String s) {
 			if (s == null || s.length() < 2)
 				return s;
@@ -39,11 +38,11 @@ public class LongestPalindromicSubstring {
 
 			// more than two characters word
 			for (int len = 2; len < dp.length; len++) {
-				for (int low = 0; low < dp.length; low++) {
+				for (int low = 0; low < dp.length - len; low++) {
 					if (s.charAt(low) == s.charAt(low + len)) {
 						if (dp[low + 1][low + len - 1]) {
 							dp[low][low + len] = true;
-							if (longest.length() < len) {
+							if (longest.length() < len + 1) {
 								longest = s.substring(low, low + len + 1);
 							}
 						}
@@ -52,7 +51,6 @@ public class LongestPalindromicSubstring {
 			}
 			return longest;
 		}
-
 	}
 
 	// 中心扩散法
