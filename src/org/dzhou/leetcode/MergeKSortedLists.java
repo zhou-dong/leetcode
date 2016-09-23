@@ -34,11 +34,11 @@ public class MergeKSortedLists {
 	public class Heap_Solution {
 
 		public ListNode mergeKLists(ListNode[] lists) {
-
 			if (lists == null || lists.length == 0)
 				return null;
-			if (lists.length == 1)
+			if (lists.length == 1) {
 				return lists[0];
+			}
 
 			// initial heap
 			PriorityQueue<ListNode> heap = new PriorityQueue<ListNode>(new Comparator<ListNode>() {
