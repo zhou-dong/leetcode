@@ -1,5 +1,8 @@
 package org.dzhou.leetcode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 17. Letter Combinations of a Phone Number
  * 
@@ -21,4 +24,25 @@ package org.dzhou.leetcode;
  */
 public class LetterCombinationsOfAPhoneNumber {
 
+	public List<String> letterCombinations(String digits) {
+		String[] buttons = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+		List<String> result = new ArrayList<String>();
+		dfs(result, digits.length(), buttons, digits, new StringBuffer());
+		return result;
+	}
+
+	private void dfs(List<String> result, int remain, String[] buttons, String digits, StringBuffer sb) {
+		if (remain == 0) {
+			if (sb.length() != 0)
+				result.add(sb.toString());
+			return;
+		}
+		String button = buttons[digits.charAt(0) - '0'];
+		for (int i = 0; i < button.length(); i++) {
+			sb = sb.append(button.charAt(i));
+			dfs(result, remain - 1, buttons, digits.substring(1), sb);
+			sb.deleteCharAt(sb.length() - 1); // 恢复现场
+		}
+	}
+	
 }
