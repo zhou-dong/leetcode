@@ -34,7 +34,6 @@ public class InsertionSortList {
 			pre.next = head;
 			head = next;
 		}
-
 		return fakeHead.next;
 	}
 
