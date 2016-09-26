@@ -3,6 +3,7 @@ package org.dzhou.leetcode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -30,33 +31,21 @@ public class WordBreakII {
 
 		public List<String> wordBreak(String s, Set<String> wordDict) {
 			List<String> result = new ArrayList<>();
+			// TODO
 			return result;
 		}
 
-		private Map<Integer, Set<Integer>> dp(String s, Set<String> wordDict) {
-			Map<Integer, Set<Integer>> map = new HashMap<>();
-
-			boolean[][] dpTable = new boolean[s.length()][s.length()];
-
-			for (int len = 1; len <= s.length(); len++) {
-				for (int i = 0; i < s.length() - len + 1; i++) {
-					String sub = s.substring(i, i + len);
-					if (wordDict.contains(sub)) {
-						dpTable[i][i + len - 1] = true;
-					} else {
-
-					}
-				}
-			}
-
-			return map;
+		void addToMap(Map<Integer, Set<Integer>> map, int key, int val) {
+			if (!map.containsKey(key))
+				map.put(key, new HashSet<>());
+			map.get(key).add(val);
 		}
 
-		private int encode(int row, int col, int length) {
+		int encode(int row, int col, int length) {
 			return row * length + col;
 		}
 
-		private int[] decode(int index, int length) {
+		int[] decode(int index, int length) {
 			return new int[] { index / length, index % length };
 		}
 
