@@ -66,7 +66,6 @@ public class MaxPointsonALine {
 				int localMax = Math.max(maxSlope, vertical);
 				max = Math.max(localMax + duplicate, max);
 			}
-
 			return max;
 		}
 
