@@ -22,7 +22,6 @@ package org.dzhou.leetcode;
 public class MoveZeroes {
 
 	// http://fisherlei.blogspot.com/2015/10/leetcode-move-zeroes-solution.html
-
 	public class Two_Pointer_Solution {
 		public void moveZeroes(int[] nums) {
 			int zero_index = 0, none_zero_index = 0;
