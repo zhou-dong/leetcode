@@ -12,7 +12,6 @@ package org.dzhou.leetcode;
  * @author zhoudong
  *
  */
-
 public class RemoveLinkedListElements {
 
 	// Definition for singly-linked list.
