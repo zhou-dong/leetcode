@@ -27,8 +27,7 @@ public class PowerOfTwo {
 				if (result == n)
 					return true;
 				result *= 2;
-				// limit check
-				if (result == 0) {
+				if (result == 0) {// limit check
 					return false;
 				}
 			}
