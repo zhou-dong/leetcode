@@ -41,6 +41,8 @@ public class PowerOfTwo {
 		}
 	}
 
+	// 判断log以2为底n的对数是否为整数
+	// Java没有log2,所以判断log10(n)/log10(2)是否为整数
 	public class Solution3 {
 		public boolean isPowerOfTwo(int n) {
 			return (Math.log(n) / Math.log(2)) % 1 == 0;
