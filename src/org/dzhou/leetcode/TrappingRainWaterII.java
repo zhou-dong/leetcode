@@ -28,15 +28,6 @@ public class TrappingRainWaterII {
 		}
 	}
 
-	public int calWater(PriorityQueue<cell> heap, int[][] heightMap, boolean[][] visited, int x, int y, int h) {
-		int row = heightMap.length, col = heightMap[0].length;
-		if (x < 0 || x >= row || y < 0 || y >= col || visited[x][y])
-			return 0;
-		heap.add(new cell(x, y, Math.max(h, heightMap[x][y])));
-		visited[x][y] = true;
-		return Math.max(0, h - heightMap[x][y]);// can hold water
-	}
-
 	public int trapRainWater(int[][] heightMap) {
 		if (heightMap == null || heightMap.length == 0)
 			return 0;
@@ -68,6 +59,15 @@ public class TrappingRainWaterII {
 			result += calWater(heap, heightMap, visited, c.x, c.y + 1, c.h);
 		}
 		return result;
+	}
+
+	public int calWater(PriorityQueue<cell> heap, int[][] heightMap, boolean[][] visited, int x, int y, int h) {
+		int row = heightMap.length, col = heightMap[0].length;
+		if (x < 0 || x >= row || y < 0 || y >= col || visited[x][y])
+			return 0;
+		heap.add(new cell(x, y, Math.max(h, heightMap[x][y])));
+		visited[x][y] = true;
+		return Math.max(0, h - heightMap[x][y]);// can hold water
 	}
 
 }
