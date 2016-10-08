@@ -1,5 +1,7 @@
 package org.dzhou.leetcode;
 
+import java.util.Arrays;
+
 /**
  * 300. Longest Increasing Subsequence
  * 
@@ -23,5 +25,29 @@ package org.dzhou.leetcode;
  *         reference: https://www.youtube.com/watch?v=CE2b_-XfVDk
  */
 public class LongestIncreasingSubsequence {
+
+	public int lengthOfLIS(int[] nums) {
+		return (nums == null || nums.length == 0) ? 0 : dpHelper(nums);
+	}
+
+	private int dpHelper(int[] nums) {
+		int[] dp = new int[nums.length];
+		Arrays.fill(dp, 1);
+		for (int i = 1; i < nums.length; i++) {
+			for (int j = 0; j < i; j++) {
+				if (nums[i] > nums[j]) {
+					dp[i] = Math.max(dp[i], dp[j] + 1);
+				}
+			}
+		}
+		return findMax(nums, dp);
+	}
+
+	private int findMax(int[] nums, int[] dp) {
+		int max = 1;
+		for (int num : dp)
+			max = Math.max(max, num);
+		return max;
+	}
 
 }
