@@ -23,4 +23,42 @@ public class LargestBstSubtree {
 			val = x;
 		}
 	}
+
+	public class Down_Top_Solution {
+
+	}
+
+	public class Top_Down_Solution {
+		public int largestBSTSubtree(TreeNode root) {
+			if (root == null)
+				return 0;
+			if (isValidBST(root)) {
+				return height(root);
+			}
+			int left = largestBSTSubtree(root.left);
+			int right = largestBSTSubtree(root.right);
+			return Math.max(left, right);
+		}
+
+		private boolean isValidBST(TreeNode node) {
+			return isValidBST(node, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+		}
+
+		private boolean isValidBST(TreeNode node, double min, double max) {
+			if (node == null)
+				return true;
+			if (node.val <= min || node.val >= max)
+				return false;
+			return isValidBST(node.left, min, node.val) && isValidBST(node.right, node.val, max);
+		}
+
+		private int height(TreeNode node) {
+			if (node == null)
+				return 0;
+			int left = height(node.left);
+			int right = height(node.right);
+			return Math.max(left, right) + 1;
+		}
+	}
+
 }
