@@ -25,8 +25,21 @@ package org.dzhou.leetcode;
 public class AddStrings {
 
 	public String addStrings(String num1, String num2) {
-
-		return "";
+		StringBuilder result = new StringBuilder();
+		int x = num1.length() - 1, y = num2.length() - 1;
+		int carry = 0, value = 0;
+		while (x >= 0 || y >= 0) {
+			value = carry;
+			if (x >= 0)
+				value += (num1.charAt(x--) - '0');
+			if (y >= 0)
+				value += (num2.charAt(y--) - '0');
+			result.append(value % 10);
+			carry = value / 10;
+		}
+		if (carry != 0)
+			result.append(1);
+		return result.reverse().toString();
 	}
 
 }
