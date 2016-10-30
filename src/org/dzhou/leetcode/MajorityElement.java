@@ -115,17 +115,18 @@ public class MajorityElement {
 	// 先假设是第一个是的, 然后再遍历到他时就给他加一票, 否则减一票, 票数为0时换个元素. 时间复杂度 O(n) 等等等…
 	public class Remove_Solution {
 		public int majorityElement(int[] nums) {
-			int time = 0, result = 0;
+			int current = 0, count = 0;
 			for (int num : nums) {
-				if (time == 0)
-					result = num;
-				if (result == num) {
-					time++;
+				if (count == 0) {
+					current = num;
+					count++;
+				} else if (current == num) {
+					count++;
 				} else {
-					time--;
+					count--;
 				}
 			}
-			return result;
+			return current;
 		}
 	}
 
