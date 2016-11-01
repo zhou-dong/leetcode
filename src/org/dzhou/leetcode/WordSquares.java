@@ -126,8 +126,11 @@ public class WordSquares {
 	class Trie {
 		TrieNode root;
 
-		Trie() {
+		Trie(String[] words) {
 			root = new TrieNode();
+			for (String word : words) {
+				insert(word);
+			}
 		}
 
 		void insert(String word) {
@@ -146,13 +149,13 @@ public class WordSquares {
 					return Collections.emptyList();
 				}
 			}
-			return current == null ? Collections.emptyList() : current.getWords();
+			return current.getWords();
 		}
 	}
 
 	public List<List<String>> wordSquares(String[] words) {
 		List<List<String>> result = new ArrayList<>();
-		Trie trie = createTrie(words);
+		Trie trie = new Trie(words);
 		for (String word : words) {
 			List<String> item = new ArrayList<>();
 			item.add(word);
@@ -179,13 +182,6 @@ public class WordSquares {
 		for (int i = 0; i < j; i++)
 			prefix[i] = item.get(i).charAt(j);
 		return prefix;
-	}
-
-	private Trie createTrie(String[] words) {
-		Trie trie = new Trie();
-		for (String word : words)
-			trie.insert(word);
-		return trie;
 	}
 
 }
