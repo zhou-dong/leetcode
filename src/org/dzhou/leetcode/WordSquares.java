@@ -74,8 +74,18 @@ import java.util.List;
  * 
  * @author zhoudong
  *
+ *         Solution: Backtracking + Trie
+ *
  */
 public class WordSquares {
+
+	class TrieNode {
+
+	}
+
+	class Trie {
+
+	}
 
 	public List<List<String>> wordSquares(String[] words) {
 
