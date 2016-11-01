@@ -1,6 +1,8 @@
 package org.dzhou.leetcode;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 425. Word Squares
@@ -80,11 +82,49 @@ import java.util.List;
 public class WordSquares {
 
 	class TrieNode {
+		Map<Character, TrieNode> children;
+		boolean isWord;
 
+		TrieNode() {
+			this.children = new HashMap<>();
+			isWord = false;
+		}
+
+		TrieNode addChild(char ch) {
+			if (!children.containsKey(ch))
+				children.put(ch, new TrieNode());
+			return children.get(ch);
+		}
+
+		TrieNode getChild(char ch) {
+			return children.containsKey(ch) ? children.get(ch) : null;
+		}
 	}
 
 	class Trie {
+		TrieNode root;
 
+		Trie() {
+			root = new TrieNode();
+		}
+
+		void insert(String word) {
+			TrieNode current = root;
+			for (char ch : word.toCharArray())
+				current = current.addChild(ch);
+			current.isWord = true;
+		}
+
+		TrieNode search(String str) {
+			TrieNode current = root;
+			for (char ch : str.toCharArray()) {
+				current = current.getChild(ch);
+				if (current == null) {
+					return null;
+				}
+			}
+			return current;
+		}
 	}
 
 	public List<List<String>> wordSquares(String[] words) {
