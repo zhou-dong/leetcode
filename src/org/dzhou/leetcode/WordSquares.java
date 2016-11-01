@@ -1,6 +1,7 @@
 package org.dzhou.leetcode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,10 +86,12 @@ public class WordSquares {
 	class TrieNode {
 		Map<Character, TrieNode> children;
 		boolean isWord;
+		String word;
 
 		TrieNode() {
 			this.children = new HashMap<>();
 			isWord = false;
+			word = null;
 		}
 
 		TrieNode addChild(char ch) {
@@ -99,6 +102,24 @@ public class WordSquares {
 
 		TrieNode getChild(char ch) {
 			return children.containsKey(ch) ? children.get(ch) : null;
+		}
+
+		List<String> getWords() {
+			List<String> result = new ArrayList<>();
+			getWords(this, result);
+			return result;
+		}
+
+		private void getWords(TrieNode node, List<String> result) {
+			if (node.isWord) {
+				result.add(node.word);
+			}
+			if (node.children.isEmpty()) {
+				return;
+			}
+			for (TrieNode child : node.children.values()) {
+				getWords(child, result);
+			}
 		}
 	}
 
@@ -114,31 +135,50 @@ public class WordSquares {
 			for (char ch : word.toCharArray())
 				current = current.addChild(ch);
 			current.isWord = true;
+			current.word = word;
 		}
 
-		TrieNode search(String str) {
+		List<String> search(char[] prefix) {
 			TrieNode current = root;
-			for (char ch : str.toCharArray()) {
+			for (char ch : prefix) {
 				current = current.getChild(ch);
 				if (current == null) {
-					return null;
+					return Collections.emptyList();
 				}
 			}
-			return current;
+			return current == null ? Collections.emptyList() : current.getWords();
 		}
 	}
 
 	public List<List<String>> wordSquares(String[] words) {
 		List<List<String>> result = new ArrayList<>();
 		Trie trie = createTrie(words);
-		for (char ch : trie.root.children.keySet()) {
-
+		for (String word : words) {
+			List<String> item = new ArrayList<>();
+			item.add(word);
+			backTracking(result, item, trie, word.length());
 		}
 		return result;
 	}
 
-	private void backTracking(List<List<String>> result, List<String> item, Trie trie) {
+	private void backTracking(List<List<String>> result, List<String> item, Trie trie, int length) {
+		if (item.size() == length) {
+			result.add(new ArrayList<>(item));
+			return;
+		}
+		char[] prefix = prefix(item, item.size());
+		for (String word : trie.search(prefix)) {
+			item.add(word);
+			backTracking(result, item, trie, word.length());
+			item.remove(item.size() - 1);
+		}
+	}
 
+	private char[] prefix(List<String> item, int j) {
+		char[] prefix = new char[j];
+		for (int i = 0; i < j; i++)
+			prefix[i] = item.get(i).charAt(j);
+		return prefix;
 	}
 
 	private Trie createTrie(String[] words) {
