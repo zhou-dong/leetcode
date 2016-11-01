@@ -1,5 +1,6 @@
 package org.dzhou.leetcode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -128,8 +129,23 @@ public class WordSquares {
 	}
 
 	public List<List<String>> wordSquares(String[] words) {
+		List<List<String>> result = new ArrayList<>();
+		Trie trie = createTrie(words);
+		for (char ch : trie.root.children.keySet()) {
 
-		return null;
+		}
+		return result;
+	}
+
+	private void backTracking(List<List<String>> result, List<String> item, Trie trie) {
+
+	}
+
+	private Trie createTrie(String[] words) {
+		Trie trie = new Trie();
+		for (String word : words)
+			trie.insert(word);
+		return trie;
 	}
 
 }
