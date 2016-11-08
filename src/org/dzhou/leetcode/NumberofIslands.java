@@ -32,7 +32,7 @@ import java.util.Queue;
  * @author zhoudong
  *
  */
-public class NumberofIslands {
+public class NumberOfIslands {
 
 	// DFS
 	public class Solution1 {
