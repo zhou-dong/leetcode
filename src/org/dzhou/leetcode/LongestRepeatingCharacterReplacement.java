@@ -1,5 +1,8 @@
 package org.dzhou.leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 424. Longest Repeating Character Replacement
  * 
@@ -35,28 +38,46 @@ package org.dzhou.leetcode;
 public class LongestRepeatingCharacterReplacement {
 
 	public int characterReplacement(String s, int k) {
-		int max = k;
-		for (int i = 0; i + k < s.length(); i++)
-			max = Math.max(max, longestConsecutive(s, i, k));
+		int max = 0, total = 0;
+		Map<Character, Integer> map = new HashMap<>();
+		for (int slow = 0, fast = 0; slow < s.length() && fast < s.length(); slow++) {
+			while (fast <= s.length() && total - findMaxCharacter(map) <= k) {
+				max = Math.max(max, total);
+				if (fast == s.length()) {
+					return max;
+				}
+				increase(map, s.charAt(fast));
+				fast++;
+				total++;
+			}
+			total--;
+			decrease(map, s.charAt(slow));
+		}
 		return max;
 	}
 
-	private int longestConsecutive(String s, int start, int k) {
-		char first = s.charAt(start);
-		int count = 0;
-		for (int i = start; i < s.length(); i++) {
-			char current = s.charAt(i);
-			if (first != current && k == 0) {
-				return count;
-			}
-			count++;
-			if (first == current) {
-				continue;
-			} else {
-				k--;
-			}
+	private void decrease(Map<Character, Integer> map, char ch) {
+		int value = map.get(ch);
+		if (value == 1) {
+			map.remove(ch);
+		} else {
+			map.put(ch, value - 1);
 		}
-		return count;
+	}
+
+	private void increase(Map<Character, Integer> map, char ch) {
+		if (!map.containsKey(ch)) {
+			map.put(ch, 1);
+		} else {
+			map.put(ch, map.get(ch) + 1);
+		}
+	}
+
+	private int findMaxCharacter(Map<Character, Integer> map) {
+		int max = Integer.MIN_VALUE;
+		for (int value : map.values())
+			max = Math.max(max, value);
+		return max;
 	}
 
 }
