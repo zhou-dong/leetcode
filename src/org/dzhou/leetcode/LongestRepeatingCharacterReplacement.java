@@ -74,7 +74,7 @@ public class LongestRepeatingCharacterReplacement {
 	}
 
 	private int findMaxCharacter(Map<Character, Integer> map) {
-		int max = Integer.MIN_VALUE;
+		int max = 0;
 		for (int value : map.values())
 			max = Math.max(max, value);
 		return max;
