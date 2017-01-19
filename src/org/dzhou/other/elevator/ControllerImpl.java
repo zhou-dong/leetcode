@@ -12,10 +12,16 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public Elevator assignElevator(int pickupFloor, int destFloor) {
+		if (pickupFloor == destFloor) {
+			return null;
+		}
 		Elevator result = null;
 		int min = Integer.MAX_VALUE;
 		for (Elevator elevator : elevators) {
 			int distance = elevator.distance(pickupFloor, destFloor);
+			if (distance == -1) {
+				continue;
+			}
 			if (distance < min) {
 				min = distance;
 				result = elevator;
