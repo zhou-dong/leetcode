@@ -26,13 +26,17 @@ public class ElevatorImpl extends BaseElevator {
 	@Override
 	public boolean start() {
 		isAvailable = true;
+		if (engine == null) {
+			throw new RuntimeException("no engine is elevator");
+		}
+		engine.start();
 		return true;
 	}
 
 	@Override
 	public boolean stop() {
 		isAvailable = false;
-		return true;
+		return engine.stop();
 	}
 
 	@Override

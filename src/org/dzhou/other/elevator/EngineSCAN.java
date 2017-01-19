@@ -4,13 +4,14 @@ import java.util.TreeSet;
 
 import org.dzhou.other.elevator.ElevatorImpl.Direction;
 
-public class EngineSCAN implements Engine {
+public class EngineSCAN implements Engine, Runnable {
 
 	TreeSet<Integer> upStops = new TreeSet<>();
 	TreeSet<Integer> downStops = new TreeSet<>();
 
 	private Direction currDirection;
 
+	private Thread thread;
 	private int currFloor;
 	private int highestFloor;
 	private int lowestFloor;
@@ -73,6 +74,29 @@ public class EngineSCAN implements Engine {
 	private void addStops(TreeSet<Integer> stops, int pickupFloor, int destFloor) {
 		stops.add(pickupFloor);
 		stops.add(destFloor);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean start() {
+		if (thread == null) {
+			thread = new Thread(this);
+			thread.start();
+		}
+		return true;
+	}
+
+	@Override
+	public boolean stop() {
+		if (thread != null) {
+			thread.interrupt();
+		}
+		return true;
 	}
 
 }
