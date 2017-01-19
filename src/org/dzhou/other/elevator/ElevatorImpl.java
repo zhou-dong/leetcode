@@ -1,51 +1,26 @@
 package org.dzhou.other.elevator;
 
-import java.util.TreeSet;
-
 public class ElevatorImpl extends BaseElevator {
 
 	public enum Direction {
 		UP, DOWN, IDLE;
+
+		public static Direction getDirection(int from, int to) {
+			return from == to ? null : from > to ? DOWN : UP;
+		}
 	}
 
-	private int currFloor;
-	private int destFloor;
-	private Direction direction;
+	private Engine engine;
 	private boolean isAvailable;
-
-	TreeSet<Integer> stops = new TreeSet<>();
 
 	@Override
 	public int distance(int pickupFloor, int destFloor) {
-		if (isAvailable == false || pickupFloor == destFloor)
-			return -1;
-		if (this.direction == Direction.IDLE)
-			return Math.abs(this.currFloor - pickupFloor);
-		Direction requestDirection = calculateDirection(pickupFloor, destFloor);
-		if (this.direction != requestDirection) {
-			return differentDirectionDistance(pickupFloor);
-		}
-		if (calculateDirection(this.currFloor, pickupFloor) == requestDirection) {
-			return Math.abs(this.currFloor - pickupFloor);
-		} else {
-			return differentDirectionDistance(pickupFloor);
-		}
-	}
-
-	private Direction calculateDirection(int pickupFloor, int destFloor) {
-		return pickupFloor > destFloor ? Direction.DOWN : Direction.UP;
-	}
-
-	private int differentDirectionDistance(int pickupFloor) {
-		int stageOne = Math.abs(this.currFloor - this.destFloor);
-		int stageTwo = Math.abs(this.destFloor - pickupFloor);
-		return stageOne + stageTwo;
+		return engine.distance(pickupFloor, destFloor);
 	}
 
 	@Override
-	public void addPickup(int pickupFloor, int destFloor) {
-		// TODO Auto-generated method stub
-
+	public void addRequest(int pickupFloor, int destFloor) {
+		engine.addRequest(pickupFloor, destFloor);
 	}
 
 	@Override
@@ -65,4 +40,20 @@ public class ElevatorImpl extends BaseElevator {
 		return false;
 	}
 
+	@Override
+	public Engine getEngine() {
+		return this.engine;
+	}
+
+	public boolean isAvailable() {
+		return isAvailable;
+	}
+
+	public void setAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+
+	public void setEngine(Engine engine) {
+		this.engine = engine;
+	}
 }

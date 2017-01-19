@@ -13,7 +13,7 @@ public class ControllerImpl implements Controller {
 	@Override
 	public void assignElevator(int pickupFloor, int destFloor) {
 		if (pickupFloor != destFloor) {
-			findNearestElevator(pickupFloor, destFloor).addPickup(pickupFloor, destFloor);
+			findNearestElevator(pickupFloor, destFloor).addRequest(pickupFloor, destFloor);
 		}
 	}
 

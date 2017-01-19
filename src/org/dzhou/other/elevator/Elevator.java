@@ -14,6 +14,8 @@ public interface Elevator {
 
 	public int distance(int pickupFloor, int destFloor);
 
-	public void addPickup(int pickupFloor, int destFloor);
+	public void addRequest(int pickupFloor, int destFloor);
+
+	public Engine getEngine();
 
 }
