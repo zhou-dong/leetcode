@@ -1,6 +1,6 @@
 package org.dzhou.other.elevator;
 
-public class ElevatorImpl extends BaseElevator {
+public class ElevatorImpl extends BaseElevator implements Engine {
 
 	public enum Direction {
 		UP, DOWN, IDLE;
