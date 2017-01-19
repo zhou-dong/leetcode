@@ -74,11 +74,21 @@ public class EngineSCAN implements Engine, Runnable {
 	private void addStops(TreeSet<Integer> stops, int pickupFloor, int destFloor) {
 		stops.add(pickupFloor);
 		stops.add(destFloor);
+		if (!thread.isAlive()) {
+			thread.start();
+		}
 	}
 
 	@Override
 	public void run() {
 		while (!this.isEmpty()) {
+			if (this.currDirection == Direction.IDLE) {
+				if (!upStops.isEmpty()) {
+					this.currDirection = Direction.UP;
+				} else {
+					this.currDirection = Direction.DOWN;
+				}
+			}
 			if (this.currDirection == Direction.UP) {
 				goUp();
 			}
@@ -119,8 +129,8 @@ public class EngineSCAN implements Engine, Runnable {
 	public boolean start() {
 		if (thread == null) {
 			thread = new Thread(this);
-			thread.start();
 		}
+		thread.start();
 		return true;
 	}
 
