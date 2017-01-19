@@ -4,12 +4,19 @@ import java.util.TreeSet;
 
 public class ElevatorImpl implements Elevator {
 
+	public enum Direction {
+		UP, DOWN, IDLE;
+	}
+
+	// stand alone without controller
 	public ElevatorImpl(int id) {
 		this.id = id;
 	}
 
-	public enum Direction {
-		UP, DOWN, IDLE;
+	// add to the controller list
+	public ElevatorImpl(int id, Controller controller) {
+		this(id);
+		controller.addElevator(this);
 	}
 
 	private int id;

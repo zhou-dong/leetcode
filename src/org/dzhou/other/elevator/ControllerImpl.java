@@ -32,8 +32,10 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public boolean addElevator(Elevator elevator) {
-		if (elevator == null || map.containsKey(elevator.getId()))
+		if (elevator == null)
 			return false;
+		if (map.containsKey(elevator.getId()))
+			throw new RuntimeException("Duplicated id:" + elevator.getId());
 		map.put(elevator.getId(), elevator);
 		elevators.add(elevator);
 		return true;
