@@ -11,10 +11,13 @@ public class ControllerImpl implements Controller {
 	List<Elevator> elevators = new LinkedList<>();
 
 	@Override
-	public Elevator assignElevator(int pickupFloor, int destFloor) {
-		if (pickupFloor == destFloor) {
-			return null;
+	public void assignElevator(int pickupFloor, int destFloor) {
+		if (pickupFloor != destFloor) {
+			findNearestElevator(pickupFloor, destFloor).addPickup(pickupFloor, destFloor);
 		}
+	}
+
+	private Elevator findNearestElevator(int pickupFloor, int destFloor) {
 		Elevator result = null;
 		int min = Integer.MAX_VALUE;
 		for (Elevator elevator : elevators) {
@@ -27,6 +30,8 @@ public class ControllerImpl implements Controller {
 				result = elevator;
 			}
 		}
+		if (result == null)
+			throw new RuntimeException("No available elevator");
 		return result;
 	}
 
@@ -54,6 +59,16 @@ public class ControllerImpl implements Controller {
 	@Override
 	public List<Elevator> getElevators() {
 		return elevators;
+	}
+
+	@Override
+	public boolean stopElevator(int elevatorId) {
+		return (!map.containsKey(elevatorId)) ? false : map.get(elevatorId).stop();
+	}
+
+	@Override
+	public boolean startElevator(int elevatorId) {
+		return (!map.containsKey(elevatorId)) ? false : map.get(elevatorId).start();
 	}
 
 }
