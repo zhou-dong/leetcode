@@ -78,8 +78,41 @@ public class EngineSCAN implements Engine, Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		while (!this.isEmpty()) {
+			if (this.currDirection == Direction.UP) {
+				goUp();
+			}
+			if (this.currDirection == Direction.DOWN) {
+				goDown();
+			}
+		}
+		this.currDirection = Direction.IDLE;
+	}
 
+	private boolean isEmpty() {
+		return this.upStops.isEmpty() && this.downStops.isEmpty();
+	}
+
+	private void goUp() {
+		while (currFloor != getHighestFloor()) {
+			int nextFloor = upStops.higher(currFloor);
+			arriveFloor(upStops, currFloor, nextFloor);
+			currFloor = nextFloor;
+		}
+		this.currDirection = Direction.DOWN;
+	}
+
+	private void goDown() {
+		while (currFloor != getLowestFloor()) {
+			int nextFloor = upStops.lower(currFloor);
+			arriveFloor(upStops, currFloor, nextFloor);
+			currFloor = nextFloor;
+		}
+		this.currDirection = Direction.UP;
+	}
+
+	private void arriveFloor(TreeSet<Integer> stops, int prev, int curr) {
+		stops.remove(prev);
 	}
 
 	@Override
