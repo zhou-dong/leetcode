@@ -2,6 +2,8 @@ package org.dzhou.other.elevator;
 
 public abstract class BaseElevator implements Elevator {
 
+	protected int id;
+
 	@Override
 	public boolean start() {
 		// TODO Auto-generated method stub
@@ -16,32 +18,16 @@ public abstract class BaseElevator implements Elevator {
 
 	@Override
 	public void register(Controller controller) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void unregister() {
-		// TODO Auto-generated method stub
-
+		controller.addElevator(this);
 	}
 
 	@Override
 	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return id;
 	}
 
-	@Override
-	public int distance(int pickupFloor, int destFloor) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void addPickup(int pickupFloor, int destFloor) {
-		// TODO Auto-generated method stub
-
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

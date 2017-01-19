@@ -2,15 +2,13 @@ package org.dzhou.other.elevator;
 
 public interface Elevator {
 
-	public boolean preCheck();
+	public boolean check();
 
 	public boolean start();
 
 	public boolean stop();
 
 	public void register(Controller controller);
-
-	public void unregister();
 
 	public int getId();
 

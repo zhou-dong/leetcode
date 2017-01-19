@@ -8,28 +8,10 @@ public class ElevatorImpl extends BaseElevator {
 		UP, DOWN, IDLE;
 	}
 
-	// stand alone without controller
-
-	// add to the controller list
-	public ElevatorImpl(int id, Controller controller) {
-		controller.addElevator(this);
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	@Override
-	public int getId() {
-		return this.id;
-	}
-
-	private int id;
 	private int currFloor;
 	private int destFloor;
 	private Direction direction;
 	private boolean isAvailable;
-	private Controller controller;
 
 	TreeSet<Integer> stops = new TreeSet<>();
 
@@ -79,24 +61,7 @@ public class ElevatorImpl extends BaseElevator {
 	}
 
 	@Override
-	public void register(Controller controller) {
-		if (controller != null) {
-			this.controller = controller;
-			this.controller.addElevator(this);
-		}
-	}
-
-	@Override
-	public void unregister() {
-		if (this.controller != null) {
-			this.controller.removeElevator(this.getId());
-			this.controller = null;
-		}
-	}
-
-	@Override
-	public boolean preCheck() {
-		// TODO Auto-generated method stub
+	public boolean check() {
 		return false;
 	}
 
