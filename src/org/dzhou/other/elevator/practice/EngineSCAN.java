@@ -1,8 +1,6 @@
 package org.dzhou.other.elevator.practice;
 
-public class EngineSCAN implements Engine, Runnable {
-
-	Thread thread = null;
+public class EngineSCAN implements Engine {
 
 	@Override
 	public int distanceToPickup(int pickupFloor, int destFloor) {
@@ -17,9 +15,9 @@ public class EngineSCAN implements Engine, Runnable {
 	}
 
 	@Override
-	public void run() {
+	public Status arrivedFloor() {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 
 }

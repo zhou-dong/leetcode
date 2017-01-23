@@ -5,9 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.dzhou.other.elevator.practice.Elevator;
+import org.dzhou.other.elevator.practice.oberver.Observer;
+import org.dzhou.other.elevator.practice.oberver.Subject;
 
-public class ControllerImpl implements Controller {
+public class ControllerImpl implements Controller, Subject {
 
 	Map<Integer, Elevator> map = new HashMap<>();
 	List<Elevator> elevators = new LinkedList<>();
@@ -77,6 +78,24 @@ public class ControllerImpl implements Controller {
 		for (Elevator elevator : elevators) {
 			elevator.start();
 		}
+	}
+
+	@Override
+	public void register(Observer observer) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void unregister(Observer observer) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void notifyObservers() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

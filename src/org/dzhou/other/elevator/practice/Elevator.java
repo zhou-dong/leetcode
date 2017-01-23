@@ -45,4 +45,10 @@ public class Elevator implements Engine {
 		this.id = id;
 	}
 
+	@Override
+	public Status arrivedFloor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
