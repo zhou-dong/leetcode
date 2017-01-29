@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class PhoneBill {
+public class PhoneBilling {
 
 	public int solution(String S) {
 
@@ -91,7 +91,7 @@ public class PhoneBill {
 
 	public static void main(String[] args) {
 		String S = "00:01:07,400-234-090\n00:05:01,701-080-080\n00:05:00,400-234-090";
-		System.out.println(new PhoneBill().solution(S));
+		System.out.println(new PhoneBilling().solution(S));
 	}
 
 }
