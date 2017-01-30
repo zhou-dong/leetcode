@@ -72,15 +72,32 @@ public class AbstractFactoryPattern {
 		public double addPrice();
 	}
 
-	public static class BMWFactory implements AutoFactory {
+	public static class BMWGermanyFactory implements AutoFactory {
 		@Override
 		public String addBrand() {
-			return "BMW";
+			return "BMW GERMANY";
 		}
 
 		@Override
 		public String addColor() {
 			return "BROWN";
+		}
+
+		@Override
+		public double addPrice() {
+			return 50000.00;
+		}
+	}
+
+	public static class BMWChinaFactory implements AutoFactory {
+		@Override
+		public String addBrand() {
+			return "BMW CHINA";
+		}
+
+		@Override
+		public String addColor() {
+			return "WHITE";
 		}
 
 		@Override
@@ -120,8 +137,10 @@ public class AbstractFactoryPattern {
 		@Override
 		protected Auto makeAuto(String typeOfAuto) {
 			switch (typeOfAuto) {
-			case "BMW":
-				return new BMW(new BMWFactory());
+			case "BMW_CHINA":
+				return new BMW(new BMWChinaFactory());
+			case "BMW_GERMANY":
+				return new BMW(new BMWGermanyFactory());
 			case "DODGE":
 				return new DODGE(new DODGEFactory());
 			}
@@ -131,9 +150,11 @@ public class AbstractFactoryPattern {
 
 	public static void main(String[] args) {
 		AutoBuilding basicAutoBuilding = new BasicAutoBuilding();
-		Auto bmw = basicAutoBuilding.orderAuto("BMW");
+		Auto bmwChina = basicAutoBuilding.orderAuto("BMW_CHINA");
+		Auto bmwGermeny = basicAutoBuilding.orderAuto("BMW_GERMANY");
 		Auto dodge = basicAutoBuilding.orderAuto("DODGE");
-		print(bmw);
+		print(bmwChina);
+		print(bmwGermeny);
 		print(dodge);
 	}
 
