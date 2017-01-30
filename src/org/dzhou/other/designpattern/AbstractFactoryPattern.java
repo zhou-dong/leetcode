@@ -43,8 +43,8 @@ public class AbstractFactoryPattern {
 
 		@Override
 		public void makeAuto() {
-			setColor(factory.addColor());
 			setBrand(factory.addBrand());
+			setColor(factory.addColor());
 			setPrice(factory.addPrice());
 		}
 	}
@@ -58,9 +58,9 @@ public class AbstractFactoryPattern {
 
 		@Override
 		public void makeAuto() {
-			setColor(this.factory.addColor());
-			setBrand(this.factory.addBrand());
-			setPrice(this.factory.addPrice());
+			setBrand(factory.addBrand());
+			setColor(factory.addColor());
+			setPrice(factory.addPrice());
 		}
 	}
 
