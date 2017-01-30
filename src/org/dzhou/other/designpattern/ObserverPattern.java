@@ -87,10 +87,14 @@ public class ObserverPattern {
 
 	public static void main(String[] args) {
 		StockTop stockTop = new StockTop();
-		new WebOberver(stockTop);
-		new PhoneOberver(stockTop);
-		stockTop.setFaceBookPrice(100);
-		stockTop.setGooglePrice(200);
+		Observer webObserver = new WebOberver(stockTop);
+		Observer phoneObserver = new PhoneOberver(stockTop);
+		stockTop.setFaceBookPrice(100.00);
+		stockTop.setGooglePrice(200.00);
+		stockTop.unregister(webObserver);
+		stockTop.setGooglePrice(300.00);
+		stockTop.unregister(phoneObserver);
+		stockTop.setFaceBookPrice(300.00);
 	}
 
 }
