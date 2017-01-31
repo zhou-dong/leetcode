@@ -153,9 +153,13 @@ public class AbstractFactoryPattern {
 		Auto bmwChina = basicAutoBuilding.orderAuto("BMW_CHINA");
 		Auto bmwGermeny = basicAutoBuilding.orderAuto("BMW_GERMANY");
 		Auto dodge = basicAutoBuilding.orderAuto("DODGE");
-		print(bmwChina);
-		print(bmwGermeny);
-		print(dodge);
+		print(new Auto[] { bmwChina, bmwGermeny, dodge });
+	}
+
+	private static void print(Auto[] autos) {
+		for (Auto auto : autos) {
+			print(auto);
+		}
 	}
 
 	private static void print(Auto auto) {

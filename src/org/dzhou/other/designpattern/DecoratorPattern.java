@@ -70,7 +70,7 @@ public class DecoratorPattern {
 	}
 
 	static void print(Pizza pizza) {
-		System.out.println(pizza.getDescription() + " " + pizza.getPrice());
+		System.out.println(pizza.getDescription() + ", price: " + pizza.getPrice());
 	}
 
 }

@@ -49,11 +49,17 @@ public class BuilderPattern {
 
 	public static void main(String[] args) {
 		Auto bmw = AutoBuilder.Builder("BMW", 50000.00).setColor("Black").setEngines(8).setCountry("Germany").build();
-		System.out.println(bmw.brand);
-		System.out.println(bmw.price);
-		System.out.println(bmw.color);
-		System.out.println(bmw.country);
-		System.out.println(bmw.engines);
+		print(bmw);
+	}
+
+	private static void print(Auto auto) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("brand: ").append(auto.brand);
+		sb.append(", price: ").append(auto.price);
+		sb.append(", color: ").append(auto.color);
+		sb.append(", country: ").append(auto.country);
+		sb.append(", engines: ").append(auto.engines);
+		System.out.println(sb.toString());
 	}
 
 }

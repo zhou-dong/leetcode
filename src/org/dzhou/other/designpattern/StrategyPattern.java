@@ -50,4 +50,5 @@ public class StrategyPattern {
 		new Bird().sound();
 		new Dog().sound();
 	}
+
 }
