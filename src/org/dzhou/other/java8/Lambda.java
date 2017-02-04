@@ -1,5 +1,9 @@
 package org.dzhou.other.java8;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,6 +52,20 @@ public class Lambda {
 
 		Add add = (a, b) -> 10;
 		Assert.assertEquals(10, add.add(100, 101));
+	}
+
+	@Test
+	public void test_compare() {
+		List<Integer> list = new ArrayList<>();
+		list.add(9);
+		list.add(3);
+		list.add(7);
+		Collections.sort(list, (Integer a, Integer b) -> {
+			return a - b;
+		});
+		Assert.assertEquals(3, list.get(0).intValue());
+		Assert.assertEquals(7, list.get(1).intValue());
+		Assert.assertEquals(9, list.get(2).intValue());
 	}
 
 }
