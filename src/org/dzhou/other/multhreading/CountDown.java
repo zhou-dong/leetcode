@@ -34,6 +34,18 @@ public class CountDown {
 			e.printStackTrace();
 		}
 		System.out.println("programming finished");
+
+		for (int i = 0; i < 3; i++) {
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					System.out.println("this is new thread");
+					latch.countDown();
+				}
+			}).start();
+		}
+		System.out.println(latch.getCount());
+		System.out.println(latch.getCount());
 	}
 
 }
