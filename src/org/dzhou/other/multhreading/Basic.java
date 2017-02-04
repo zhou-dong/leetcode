@@ -1,6 +1,6 @@
 package org.dzhou.other.multhreading;
 
-class RunnerThreand extends Thread {
+class RunnerThread extends Thread {
 	@Override
 	public void run() {
 		for (int i = 0; i < 10; i++) {
@@ -30,8 +30,8 @@ class RunnerRunnable implements Runnable {
 
 public class Basic {
 	public static void main(String[] args) {
-		new RunnerThreand().start();
-		new RunnerThreand().start();
+		new RunnerThread().start();
+		new RunnerThread().start();
 
 		new Thread(new RunnerRunnable()).start();
 		new Thread(new RunnerRunnable()).start();
