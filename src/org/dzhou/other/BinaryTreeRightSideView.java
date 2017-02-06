@@ -1,4 +1,4 @@
-package org.dzhou.other.multhreading;
+package org.dzhou.other;
 
 import java.util.ArrayList;
 import java.util.Collections;
