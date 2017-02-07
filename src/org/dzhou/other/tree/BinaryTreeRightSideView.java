@@ -1,4 +1,4 @@
-package org.dzhou.other;
+package org.dzhou.other.tree;
 
 import java.util.ArrayList;
 import java.util.Collections;

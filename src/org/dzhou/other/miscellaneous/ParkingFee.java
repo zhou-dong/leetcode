@@ -1,4 +1,4 @@
-package org.dzhou.other;
+package org.dzhou.other.miscellaneous;
 
 public class ParkingFee {
 

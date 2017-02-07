@@ -1,4 +1,4 @@
-package org.dzhou.other;
+package org.dzhou.other.miscellaneous;
 
 import java.util.HashSet;
 import java.util.LinkedList;
