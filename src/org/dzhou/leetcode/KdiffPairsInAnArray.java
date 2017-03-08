@@ -1,5 +1,8 @@
 package org.dzhou.leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Given an array of integers and an integer k, you need to find the number of
  * unique k-diff pairs in the array. Here a k-diff pair is defined as an integer
@@ -30,7 +33,38 @@ package org.dzhou.leetcode;
 public class KdiffPairsInAnArray {
 
 	public int findPairs(int[] nums, int k) {
-
-		return 0;
+		if (nums == null || nums.length == 0 || k < 0)
+			return 0;
+		Map<Integer, Integer> map = createCountMap(nums);
+		return k == 0 ? zeroDiffCount(map) : notZeroDiffCount(map, k);
 	}
+
+	private Map<Integer, Integer> createCountMap(int[] nums) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int num : nums) {
+			map.put(num, map.getOrDefault(num, 0) + 1);
+		}
+		return map;
+	}
+
+	private int zeroDiffCount(Map<Integer, Integer> map) {
+		int count = 0;
+		for (int value : map.values()) {
+			if (value > 1) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	private int notZeroDiffCount(Map<Integer, Integer> map, int k) {
+		int count = 0;
+		for (int key : map.keySet()) {
+			if (map.containsKey(key + k)) {
+				count++;
+			}
+		}
+		return count;
+	}
+
 }
