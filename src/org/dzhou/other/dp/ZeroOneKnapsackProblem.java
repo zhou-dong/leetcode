@@ -21,14 +21,13 @@ package org.dzhou.other.dp;
 public class ZeroOneKnapsackProblem {
 
 	public int maxValue(int[] weights, int[] values, int totalWeight) {
-
 		if (weights == null || values == null || totalWeight < 0) {
 			throw new IllegalArgumentException();
 		}
+		return (totalWeight == 0) ? 0 : dp(weights, values, totalWeight);
+	}
 
-		if (totalWeight == 0) {
-			return 0;
-		}
+	private int dp(int[] weights, int[] values, int totalWeight) {
 
 		int[][] table = new int[weights.length + 1][totalWeight + 1];
 
@@ -45,5 +44,4 @@ public class ZeroOneKnapsackProblem {
 
 		return table[table.length - 1][table[0].length - 1];
 	}
-
 }
