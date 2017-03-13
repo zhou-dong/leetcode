@@ -34,47 +34,18 @@ package org.dzhou.leetcode;
 public class PredictTheWinner {
 
 	public boolean predictTheWinner(int[] nums) {
-		Pair[][] table = createDpTable(nums);
-		for (int row = 1; row <= nums.length; row++) {
-			for (int col = row; col < table[0].length; col++) {
-				int low = nums[col - 1];
-				int high = nums[col + row];
-
+		int n = nums.length;
+		int[][] dp = new int[n][n];
+		for (int i = 0; i < n; i++) {
+			dp[i][i] = nums[i];
+		}
+		for (int len = 1; len < n; len++) {
+			for (int i = 0; i < n - len; i++) {
+				int j = i + len;
+				dp[i][j] = Math.max(nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1]);
 			}
 		}
-		return Pair.isFirstWin(table[1][table.length - 1]);
-	}
-
-	static class Pair {
-		int first, second;
-
-		public Pair() {
-			this(0, 0);
-		}
-
-		public Pair(int first, int second) {
-			this.first = first;
-			this.second = second;
-		}
-
-		public static boolean isFirstWin(Pair pair) {
-			return pair.first > pair.second;
-		}
-
-		public static Pair getWinner(Pair p1, Pair p2) {
-			return p1.first > p2.first ? p1 : p2;
-		}
-	}
-
-	public Pair[][] createDpTable(int[] nums) {
-		Pair[][] table = new Pair[nums.length + 1][nums.length + 1];
-		for (int col = 0; col < table[0].length; col++) {
-			table[0][col] = new Pair();
-		}
-		for (int row = 0; row < table.length; row++) {
-			table[row][0] = new Pair();
-		}
-		return table;
+		return dp[0][n - 1] >= 0;
 	}
 
 }
