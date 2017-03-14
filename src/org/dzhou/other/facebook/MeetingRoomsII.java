@@ -12,6 +12,8 @@ import java.util.PriorityQueue;
  * 
  * For example, Given [[0, 30],[5, 10],[15, 20]], return 2.
  * 
+ * Tags: Heap Greedy Sort
+ * 
  * @author zhoudong
  *
  */
