@@ -13,7 +13,7 @@ public class ReplaceQuestionMark {
 
 	private void helper(Set<String> result, String pattern, int index, String item) {
 		if (index == pattern.length()) {
-			result.add(item.toString());
+			result.add(item);
 			return;
 		}
 		char ch = pattern.charAt(index);
