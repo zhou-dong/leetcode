@@ -2,6 +2,7 @@ package org.dzhou.other.rubicon.test;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.dzhou.other.rubicon.ReplaceQuestionMark;
 import org.junit.Assert;
@@ -18,10 +19,17 @@ public class TestReplaceQuestionMark {
 	}
 
 	@Test
-	public void test() {
+	public void test1() {
 		String pattern = "1??1";
-		String[] expected = { "1001", "1011", "1101", "1111" };
-		Assert.assertEquals(new HashSet<>(Arrays.asList(expected)), instance.combinations(pattern));
+		Set<String> expected = new HashSet<>(Arrays.asList("1001", "1011", "1101", "1111"));
+		Assert.assertEquals(expected, instance.combinations(pattern));
+	}
+
+	@Test
+	public void test2() {
+		String pattern = "10?1";
+		Set<String> expected = new HashSet<>(Arrays.asList("1001", "1011"));
+		Assert.assertEquals(expected, instance.combinations(pattern));
 	}
 
 }
