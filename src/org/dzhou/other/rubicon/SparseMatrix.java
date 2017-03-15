@@ -3,15 +3,10 @@ package org.dzhou.other.rubicon;
 /**
  * @author zhoudong
  */
-public class SparseMatrix {
+public interface SparseMatrix {
 
-	public void insert(int row, int col, int value) {
+	public void insert(int row, int col, int value);
 
-	}
-
-	public int get(int row, int col) {
-
-		return 0;
-	}
+	public int get(int row, int col);
 
 }
