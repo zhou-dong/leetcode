@@ -23,31 +23,72 @@ import java.util.List;
 public class MinimumTimeDifference {
 
 	public int findMinDifference(List<String> timePoints) {
+
 		boolean[] mark = new boolean[24 * 60];
+
 		for (String time : timePoints) {
-			String[] t = time.split(":");
-			int h = Integer.parseInt(t[0]);
-			int m = Integer.parseInt(t[1]);
-			if (mark[h * 60 + m])
+			int seconds = getSeconds(time);
+			if (mark[seconds])
 				return 0;
-			mark[h * 60 + m] = true;
+			mark[seconds] = true;
 		}
 
-		int prev = 0, min = Integer.MAX_VALUE;
-		int first = Integer.MAX_VALUE, last = Integer.MIN_VALUE;
-		for (int i = 0; i < 24 * 60; i++) {
+		int minInterval = findMinInterval(mark);
+		int lastToFirst = intervalLastToFirst(mark);
+
+		return Math.min(minInterval, lastToFirst);
+	}
+
+	private int intervalLastToFirst(boolean[] mark) {
+		return findFirst(mark) + mark.length - findLast(mark);
+	}
+
+	private int findFirst(boolean[] mark) {
+		for (int i = 0; i < mark.length; i++) {
 			if (mark[i]) {
-				if (first != Integer.MAX_VALUE) {
-					min = Math.min(min, i - prev);
-				}
-				first = Math.min(first, i);
-				last = Math.max(last, i);
-				prev = i;
+				return i;
 			}
 		}
+		return -1;
+	}
 
-		min = Math.min(min, (24 * 60 - last + first));
+	private int findLast(boolean[] mark) {
+		for (int i = mark.length - 1; i >= 0; i--) {
+			if (mark[i]) {
+				return i;
+			}
+		}
+		return -1;
+	}
 
+	private int findMinInterval(boolean[] mark) {
+		int prev = -1, min = Integer.MAX_VALUE;
+		for (int i = 0; i < mark.length; i++) {
+			if (!mark[i]) {
+				continue;
+			}
+			if (prev == -1) {
+				prev = i;
+				continue;
+			}
+			min = Math.min(min, i - prev);
+			prev = i;
+		}
 		return min;
 	}
+
+	private int getSeconds(String time) {
+		String[] strs = time.split(":");
+		return getSeconds(strs[0], strs[1]);
+	}
+
+	private int getSeconds(String minutes, String seconds) {
+		return getSeconds(Integer.parseInt(minutes), Integer.parseInt(seconds));
+
+	}
+
+	private int getSeconds(int minutes, int seconds) {
+		return minutes * 60 + seconds;
+	}
+
 }
