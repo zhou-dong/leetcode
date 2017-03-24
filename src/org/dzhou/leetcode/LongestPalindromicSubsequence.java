@@ -15,7 +15,9 @@ package org.dzhou.leetcode;
  */
 public class LongestPalindromicSubsequence {
 
+	// use dynamic programming to solve this problem
 	public int longestPalindromeSubseq(String s) {
+
 		int[][] dp = new int[s.length()][s.length()];
 
 		for (int i = s.length() - 1; i >= 0; i--) {
@@ -28,6 +30,7 @@ public class LongestPalindromicSubsequence {
 				}
 			}
 		}
+
 		return dp[0][s.length() - 1];
 	}
 
